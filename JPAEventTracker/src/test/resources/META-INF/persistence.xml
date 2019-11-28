@@ -9,7 +9,9 @@
     </provider>
 
 <!-- class definitions -->
-<class>com.skilldistillery.xtreme.entities.FIXME</class>
+<class>com.skilldistillery.eventtracker.entities.User</class>
+<class>com.skilldistillery.eventtracker.entities.Beer</class>
+<class>com.skilldistillery.eventtracker.entities.UserBeer</class>
 
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/eventdb?useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=MST" />
