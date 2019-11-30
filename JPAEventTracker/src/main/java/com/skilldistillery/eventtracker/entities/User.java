@@ -17,6 +17,7 @@ public class User {
 	private int id;
 	@Column(name = "first_name")
 	private String firstName;
+	private String password;
 
 	@Column(name = "last_name")
 	private String lastName;
@@ -26,6 +27,14 @@ public class User {
 
 	@OneToMany(mappedBy = "user")
 	private List<UserBeer> userBeers;
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
 	public List<UserBeer> getUserBeers() {
 		return userBeers;

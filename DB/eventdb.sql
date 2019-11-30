@@ -21,7 +21,7 @@ USE `eventdb` ;
 DROP TABLE IF EXISTS `Beer` ;
 
 CREATE TABLE IF NOT EXISTS `Beer` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `style` VARCHAR(45) NULL,
   `abv` DOUBLE NULL,
@@ -38,11 +38,12 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `user` ;
 
 CREATE TABLE IF NOT EXISTS `user` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `first_name` VARCHAR(45) NOT NULL,
   `last_name` VARCHAR(45) NOT NULL,
   `email` VARCHAR(45) NOT NULL,
   `img_url` TEXT(1000) NULL,
+  `password` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -53,7 +54,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `user_beer` ;
 
 CREATE TABLE IF NOT EXISTS `user_beer` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `user_id` INT NOT NULL,
   `beer_id` INT NOT NULL,
   `comment` VARCHAR(45) NULL,
@@ -91,7 +92,10 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `eventdb`;
-INSERT INTO `Beer` (`id`, `name`, `style`, `abv`, `img_url`, `brewrey`, `ibu`) VALUES (1, 'Compass', 'American IPA', 6.9, 'http://www.infobarrel.com/media/image/155678_max.JPG', 'Bristol', 63);
+INSERT INTO `Beer` (`id`, `name`, `style`, `abv`, `img_url`, `brewrey`, `ibu`) VALUES (1, 'Compass', 'IPA', 6.9, 'http://www.infobarrel.com/media/image/155678_max.JPG', 'Bristol', 63);
+INSERT INTO `Beer` (`id`, `name`, `style`, `abv`, `img_url`, `brewrey`, `ibu`) VALUES (2, 'Hazy Little Thing', 'IPA', 6.7, 'http://3.bp.blogspot.com/-RSctTC2ksbY/W0e4JDcVEDI/AAAAAAAAGO8/UY4zk6UmTpkCux9ovsxUPlQbAnMBsuk3wCK4BGAYYCw/s1600/Feature%2BBeer%2BFriday%2BSierra%2BNevada.JPG', 'Sierra Nevada Brewing Co', 35);
+INSERT INTO `Beer` (`id`, `name`, `style`, `abv`, `img_url`, `brewrey`, `ibu`) VALUES (3, 'Bud Light', 'Lager', 4.2, 'https://cdn.vox-cdn.com/thumbor/iu1LGOq-XUQmjGzlyK9cJuZzJ-s=/373x120:3923x2624/1200x800/filters:focal(1764x1066:2436x1738)/cdn.vox-cdn.com/uploads/chorus_image/image/65498059/shutterstock_484323697.0.jpg', 'Anheuser-Busch', NULL);
+INSERT INTO `Beer` (`id`, `name`, `style`, `abv`, `img_url`, `brewrey`, `ibu`) VALUES (4, 'Coors Light', 'Lager', 4.2, 'https://www.coorslight.com/sites/CoorsLightRD/files/CL-Hompage-Mobile-%281024-x-1366%29_2.jpg', 'Coors Brewing Company', NULL);
 
 COMMIT;
 
@@ -101,7 +105,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `eventdb`;
-INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `img_url`) VALUES (1, 'Kelly', 'Cromeans', 'cromeans15@gmail.com', NULL);
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `img_url`, `password`) VALUES (1, 'Kelly', 'Cromeans', 'cromeans15@gmail.com', NULL, 'qqaazz11');
 
 COMMIT;
 
