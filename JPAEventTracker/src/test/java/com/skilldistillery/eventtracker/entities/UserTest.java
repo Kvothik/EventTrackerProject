@@ -19,7 +19,7 @@ class UserTest {
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
-		emf = Persistence.createEntityManagerFactory("EventPU");
+		emf = Persistence.createEntityManagerFactory("beerPU");
 
 	}
 
@@ -41,7 +41,7 @@ class UserTest {
 	}
 	@Test
 	void test() {
-		fail("Not yet implemented");
+		assertEquals("Kelly", u.getFirstName());
 	}
 
 }

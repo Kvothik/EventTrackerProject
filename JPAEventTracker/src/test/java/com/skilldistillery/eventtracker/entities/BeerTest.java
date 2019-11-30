@@ -19,7 +19,7 @@ class BeerTest {
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
-		emf = Persistence.createEntityManagerFactory("EventPU");
+		emf = Persistence.createEntityManagerFactory("beerPU");
 
 	}
 
@@ -41,7 +41,7 @@ class BeerTest {
 	}
 	@Test
 	void test() {
-		assertEquals("", b.getName());
+		assertEquals("Compass", b.getName());
 	}
 
 }
