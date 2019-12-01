@@ -1,5 +1,6 @@
 package com.skilldistillery.eventtracker.controllers;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,6 +39,11 @@ public class MovieController {
 	@GetMapping("movie/search/{keyword}")
 	public List<Movie> getByTitle(@PathVariable String keyword) {
 		return repo.queryByTitle(keyword);
+	}
+	
+	@GetMapping("movie/search/date")
+	public List<Movie> getByRelease() {
+		return repo.queryByReleaseDate();
 	}
 
 	@PostMapping("movie")
