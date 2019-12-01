@@ -16,63 +16,23 @@ CREATE SCHEMA IF NOT EXISTS `eventdb` DEFAULT CHARACTER SET utf8 ;
 USE `eventdb` ;
 
 -- -----------------------------------------------------
--- Table `Beer`
+-- Table `movie`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `Beer` ;
+DROP TABLE IF EXISTS `movie` ;
 
-CREATE TABLE IF NOT EXISTS `Beer` (
+CREATE TABLE IF NOT EXISTS `movie` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NOT NULL,
-  `style` VARCHAR(45) NULL,
-  `abv` DOUBLE NULL,
+  `title` VARCHAR(45) NOT NULL,
+  `length` VARCHAR(45) NULL,
+  `rating` ENUM('G', 'PG', 'PG13', 'R') NULL,
+  `type` VARCHAR(45) NULL,
+  `description` TEXT(1000) NULL,
+  `trailer` TEXT(1000) NULL,
+  `director` VARCHAR(45) NULL,
+  `cast` TEXT(1000) NULL,
+  `release_date` DATETIME NULL,
   `img_url` TEXT(1000) NULL,
-  `brewrey` VARCHAR(45) NULL,
-  `ibu` INT NULL,
   PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `user`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `user` ;
-
-CREATE TABLE IF NOT EXISTS `user` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `first_name` VARCHAR(45) NOT NULL,
-  `last_name` VARCHAR(45) NOT NULL,
-  `email` VARCHAR(45) NOT NULL,
-  `img_url` TEXT(1000) NULL,
-  `password` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `user_beer`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `user_beer` ;
-
-CREATE TABLE IF NOT EXISTS `user_beer` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `user_id` INT NOT NULL,
-  `beer_id` INT NOT NULL,
-  `comment` VARCHAR(45) NULL,
-  `rating` INT NULL,
-  `date` DATE NULL,
-  PRIMARY KEY (`id`),
-  INDEX `user_id_idx` (`user_id` ASC),
-  INDEX `beer_id_idx` (`beer_id` ASC),
-  CONSTRAINT `user_id`
-    FOREIGN KEY (`user_id`)
-    REFERENCES `user` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `beer_id`
-    FOREIGN KEY (`beer_id`)
-    REFERENCES `Beer` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 SET SQL_MODE = '';
@@ -88,34 +48,22 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 -- -----------------------------------------------------
--- Data for table `Beer`
+-- Data for table `movie`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `eventdb`;
-INSERT INTO `Beer` (`id`, `name`, `style`, `abv`, `img_url`, `brewrey`, `ibu`) VALUES (1, 'Compass', 'IPA', 6.9, 'http://www.infobarrel.com/media/image/155678_max.JPG', 'Bristol', 63);
-INSERT INTO `Beer` (`id`, `name`, `style`, `abv`, `img_url`, `brewrey`, `ibu`) VALUES (2, 'Hazy Little Thing', 'IPA', 6.7, 'http://3.bp.blogspot.com/-RSctTC2ksbY/W0e4JDcVEDI/AAAAAAAAGO8/UY4zk6UmTpkCux9ovsxUPlQbAnMBsuk3wCK4BGAYYCw/s1600/Feature%2BBeer%2BFriday%2BSierra%2BNevada.JPG', 'Sierra Nevada Brewing Co', 35);
-INSERT INTO `Beer` (`id`, `name`, `style`, `abv`, `img_url`, `brewrey`, `ibu`) VALUES (3, 'Bud Light', 'Lager', 4.2, 'https://cdn.vox-cdn.com/thumbor/iu1LGOq-XUQmjGzlyK9cJuZzJ-s=/373x120:3923x2624/1200x800/filters:focal(1764x1066:2436x1738)/cdn.vox-cdn.com/uploads/chorus_image/image/65498059/shutterstock_484323697.0.jpg', 'Anheuser-Busch', NULL);
-INSERT INTO `Beer` (`id`, `name`, `style`, `abv`, `img_url`, `brewrey`, `ibu`) VALUES (4, 'Coors Light', 'Lager', 4.2, 'https://www.coorslight.com/sites/CoorsLightRD/files/CL-Hompage-Mobile-%281024-x-1366%29_2.jpg', 'Coors Brewing Company', NULL);
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `user`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `eventdb`;
-INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `img_url`, `password`) VALUES (1, 'Kelly', 'Cromeans', 'cromeans15@gmail.com', NULL, 'qqaazz11');
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `user_beer`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `eventdb`;
-INSERT INTO `user_beer` (`id`, `user_id`, `beer_id`, `comment`, `rating`, `date`) VALUES (1, 1, 1, 'A tasty IPA. I like all of Bristols IPA\'s.', 4, NULL);
+INSERT INTO `movie` (`id`, `title`, `length`, `rating`, `type`, `description`, `trailer`, `director`, `cast`, `release_date`, `img_url`) VALUES (1, 'Star Wars: The Rise of Skywalker', '141', NULL, ' Action, Adventure, Fantasy', 'The surviving Resistance faces the First Order once more in the final chapter of the Skywalker saga.', 'https://www.youtube.com/watch?v=7AXJt3d90c8', ' J.J. Abrams', ' Adam Driver, Daisy Ridley, Billie Lourd', '2019-12-20', 'https://m.media-amazon.com/images/M/MV5BMDljNTQ5ODItZmQwMy00M2ExLTljOTQtZTVjNGE2NTg0NGIxXkEyXkFqcGdeQXVyODkzNTgxMDg@._V1_UX182_CR0,0,182,268_AL_.jpg');
+INSERT INTO `movie` (`id`, `title`, `length`, `rating`, `type`, `description`, `trailer`, `director`, `cast`, `release_date`, `img_url`) VALUES (2, 'The Aeronauts', '100', 'PG13', ' Action, Adventure, Biography', 'Pilot Amelia Wren (Felicity Jones) and scientist James Glaisher (Eddie Redmayne) find themselves in an epic fight for survival while attempting to make discoveries in a gas balloon.\n', 'https://www.youtube.com/watch?v=Rm4VnwCtQO8', ' Tom Harper', ' Felicity Jones, Eddie Redmayne, Himesh Patel ', '2019-12-20', 'https://upload.wikimedia.org/wikipedia/en/1/13/TheAeronautsPoster.jpeg');
+INSERT INTO `movie` (`id`, `title`, `length`, `rating`, `type`, `description`, `trailer`, `director`, `cast`, `release_date`, `img_url`) VALUES (3, 'Portrait of a Lady on Fire', '121', 'R', ' Drama, Romance', 'On an isolated island in Brittany at the end of the eighteenth century, a female painter is obliged to paint a wedding portrait of a young woman.', 'https://www.youtube.com/watch?v=R-fQPTwma9o', ' Céline Sciamma', ' Noémie Merlant, Adèle Haenel, Luàna Bajrami ', '2020-02-14', 'https://m.media-amazon.com/images/M/MV5BNjgwNjkwOWYtYmM3My00NzI1LTk5OGItYWY0OTMyZTY4OTg2XkEyXkFqcGdeQXVyODk4OTc3MTY@._V1_UY1200_CR92,0,630,1200_AL_.jpg');
+INSERT INTO `movie` (`id`, `title`, `length`, `rating`, `type`, `description`, `trailer`, `director`, `cast`, `release_date`, `img_url`) VALUES (4, 'Jumanji: The Next Level', '123', 'PG13', ' Action, Adventure, Comedy', 'In Jumanji: The Next Level, the gang is back but the game has changed. As they return to rescue one of their own, the players will have to brave parts unknown from arid deserts to snowy mountains, to escape the world\'s most dangerous game.', 'https://www.youtube.com/watch?v=4gU-x9HIPys', 'Jake Kasdan', ' Dwayne Johnson, Jack Black, Kevin Hart', '2019-12-19', 'https://m.media-amazon.com/images/M/MV5BOTVjMmFiMDUtOWQ4My00YzhmLWE3MzEtODM1NDFjMWEwZTRkXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_UX182_CR0,0,182,268_AL_.jpg');
+INSERT INTO `movie` (`id`, `title`, `length`, `rating`, `type`, `description`, `trailer`, `director`, `cast`, `release_date`, `img_url`) VALUES (5, 'Cats', NULL, NULL, 'Comedy, Drama, Family', 'A tribe of cats called the Jellicles must decide yearly which one will ascend to the Heaviside Layer and come back to a new Jellicle life.', 'https://www.youtube.com/watch?v=gNTDoOmc1OQ', 'Tom Hooper', ' Taylor Swift, Idris Elba, Francesca Hayward', '2019-12-20', 'https://m.media-amazon.com/images/M/MV5BNTE4NWRhYmQtOTY4YS00OWMwLWEwYWUtZjVjNDhhODc5YzNmXkEyXkFqcGdeQXVyODkzNTgxMDg@._V1_UX182_CR0,0,182,268_AL_.jpg');
+INSERT INTO `movie` (`id`, `title`, `length`, `rating`, `type`, `description`, `trailer`, `director`, `cast`, `release_date`, `img_url`) VALUES (6, '1917', '119', 'R', ' Drama, War', 'Two young British privates during the First World War are given an impossible mission: deliver a message deep in enemy territory that will stop 1,600 men, and one of the soldier\'s brothers, from walking straight into a deadly trap.', 'https://www.imdb.com/videoplayer/vi478723865?playlistId=tt8579674&ref_=tt_ov_vi', 'Sam Mendes', ' Andrew Scott, Benedict Cumberbatch, Richard Madden', '2019-12-25', 'https://m.media-amazon.com/images/M/MV5BOTdmNTFjNDEtNzg0My00ZjkxLTg1ZDAtZTdkMDc2ZmFiNWQ1XkEyXkFqcGdeQXVyNTAzNzgwNTg@._V1_UX182_CR0,0,182,268_AL_.jpg');
+INSERT INTO `movie` (`id`, `title`, `length`, `rating`, `type`, `description`, `trailer`, `director`, `cast`, `release_date`, `img_url`) VALUES (7, 'Yip Man 4', '105', 'R', ' Action, Biography, Drama', 'The Kung Fu master travels to the U.S. where his student has upset the local martial arts community by opening a Wing Chun school.', 'https://www.imdb.com/videoplayer/vi1626717465?playlistId=tt2076298&ref_=tt_ov_vi', 'Wilson Yip', 'Scott Adkins, Donnie Yen, Kwok-Kwan Chan', '2019-12-25', 'https://m.media-amazon.com/images/M/MV5BY2FkY2QzOTctNmViZi00YTU5LTk5ZmQtMTJhMzFiOTIyZDc2XkEyXkFqcGdeQXVyNzQ2NTQzMDk@._V1_UY268_CR16,0,182,268_AL_.jpg');
+INSERT INTO `movie` (`id`, `title`, `length`, `rating`, `type`, `description`, `trailer`, `director`, `cast`, `release_date`, `img_url`) VALUES (8, 'Clemency', '113', 'R', 'Drama', 'Years of carrying out death row executions have taken a toll on prison warden Bernadine Williams. As she prepares to execute another inmate, Bernadine must confront the psychological and emotional demons her job creates, ultimately connecting her to the man she is sanctioned to kill.', 'https://www.imdb.com/videoplayer/vi2744565529?playlistId=tt5577494&ref_=tt_ov_vi', 'Chinonye Chukwu', 'Alfre Woodard, Wendell Pierce, Aldis Hodge', '2019-12-27', 'https://m.media-amazon.com/images/M/MV5BOGM2ZDE4NjMtYjY5MC00MDcwLTllZDYtN2YyNDgxOWE5MjI3XkEyXkFqcGdeQXVyODk4OTc3MTY@._V1_UX182_CR0,0,182,268_AL_.jpg');
+INSERT INTO `movie` (`id`, `title`, `length`, `rating`, `type`, `description`, `trailer`, `director`, `cast`, `release_date`, `img_url`) VALUES (9, 'Spies in Disguise', '102', 'PG', 'Animation, Action, Adventure', 'When the world\'s best spy is turned into a pigeon, he must rely on his nerdy tech officer to save the world.', 'https://www.youtube.com/watch?v=A05s7OM-8Oc', 'Nick Bruno, Troy Quane', ' Karen Gillan, Will Smith, Ben Mendelsohn', '2019-12-25', 'https://m.media-amazon.com/images/M/MV5BNzg1MzM3OWUtNjgzZC00NjMzLWE1NzAtOThiMDgyMjhhZDBhXkEyXkFqcGdeQXVyODkzNTgxMDg@._V1_UX182_CR0,0,182,268_AL_.jpg');
+INSERT INTO `movie` (`id`, `title`, `length`, `rating`, `type`, `description`, `trailer`, `director`, `cast`, `release_date`, `img_url`) VALUES (10, 'Little Women', '134', 'PG', 'Drama, Romance', 'Four sisters come of age in America in the aftermath of the Civil War.', 'https://www.imdb.com/videoplayer/vi2655304729?playlistId=tt3281548&ref_=tt_ov_vi', 'Greta Gerwig', ' Saoirse Ronan, Emma Watson, Timothée Chalame', '2019-12-25', 'https://m.media-amazon.com/images/M/MV5BY2QzYTQyYzItMzAwYi00YjZlLThjNTUtNzMyMDdkYzJiNWM4XkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_UX182_CR0,0,182,268_AL_.jpg');
+INSERT INTO `movie` (`id`, `title`, `length`, `rating`, `type`, `description`, `trailer`, `director`, `cast`, `release_date`, `img_url`) VALUES (11, 'Bombshell', '108', 'R', ' Biography, Drama', 'A group of women decide to take on Fox News head Roger Ailes and the toxic atmosphere he presided over at the network.', 'https://www.imdb.com/videoplayer/vi2331492121?playlistId=tt6394270&ref_=tt_ov_vi', 'Jay Roach', 'Margot Robbie, Brigette Lundy-Paine, Charlize Theron', '2019-12-20', 'https://m.media-amazon.com/images/M/MV5BZjlhOWE3YjktY2MzOC00ZmQ1LWIwNjgtZmVhZmFjZGExMzgyXkEyXkFqcGdeQXVyMDA4NzMyOA@@._V1_UX182_CR0,0,182,268_AL_.jpg');
+INSERT INTO `movie` (`id`, `title`, `length`, `rating`, `type`, `description`, `trailer`, `director`, `cast`, `release_date`, `img_url`) VALUES (12, 'Uncut Gems', '135', 'R', ' Comedy, Crime, Drama', 'A charismatic New York City jeweler always on the lookout for the next big score, makes a series of high-stakes bets that could lead to the windfall of a lifetime. Howard must perform a precarious high-wire act, balancing business, family, and encroaching adversaries on all sides, in his relentless pursuit of the ultimate win.', 'https://www.youtube.com/watch?v=vTfJp2Ts9X8', ' Benny Safdie, Josh Safdie', ' Adam Sandler, Julia Fox, Kevin Garnett', NULL, 'https://m.media-amazon.com/images/M/MV5BZDhkMjUyYjItYWVkYi00YTM5LWE4MGEtY2FlMjA3OThlYmZhXkEyXkFqcGdeQXVyODk4OTc3MTY@._V1_UX182_CR0,0,182,268_AL_.jpg');
 
 COMMIT;
 

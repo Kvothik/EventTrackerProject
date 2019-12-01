@@ -12,15 +12,14 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class UserBeerTest {
-	
+class MovieTest {
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private UserBeer ub;
+	private Movie movie;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
-		emf = Persistence.createEntityManagerFactory("beerPU");
+		emf = Persistence.createEntityManagerFactory("moviePU");
 
 	}
 
@@ -32,19 +31,17 @@ class UserBeerTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		ub = em.find(UserBeer.class, 1);
+		movie = em.find(Movie.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		ub = null;
+		movie = null;
 	}
 	@Test
 	void test() {
-		assertEquals("Kelly", ub.getUser().getFirstName());
-//		assertEquals("Compass", ub.getBeer().getName());
-		
+		assertEquals("Star Wars: The Rise of Skywalker", movie.getTitle());
 	}
 
 }
