@@ -41,9 +41,14 @@ public class MovieController {
 		return repo.queryByTitle(keyword);
 	}
 	
-	@GetMapping("movie/search/date")
-	public List<Movie> getByRelease() {
-		return repo.queryByReleaseDate();
+	@GetMapping("movie/search/comingSoon")
+	public List<Movie> getByComingSoon() {
+		return repo.queryByComingSoon();
+	}
+	
+	@GetMapping("movie/search/inTheatres")
+	public List<Movie> getByInTheatre() {
+		return repo.queryByInTheatres();
 	}
 
 	@PostMapping("movie")
