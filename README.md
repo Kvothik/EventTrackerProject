@@ -4,7 +4,7 @@
 This is the backend for a soon to be full-stack application to track upcoming movies. The backend was created using Restful API/JSON/JPA/Spring Boot/Hibernate/Gradle
 
 |  Return Type	Route	Functionality                                              |
-| ------------------------------------------------------------------------------ |
+| ------------- | ----- | ------------------- | -------------------------------- |
 | List<Movie>	  | GET   | api/movie           | Gets all movies                  |
 | List<Movie>	  | GET   | api/movie/{keyword} | Gets movies by keyword           |
 | Movie	        | GET   | api/movie/{id}      |	Gets one movie by id             |
