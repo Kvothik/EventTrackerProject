@@ -1,7 +1,17 @@
 # EventTrackerProject
 
+### New Movie Tracker
+
+#### Skill Distillery Assignment
+
+Course began: 9 September 2019
+Assigned: 27 November 2019
+Completed: 29 November 2019
+
 ## Purpose
-This is the backend for a soon to be full-stack application to track upcoming movies. The backend was created using Restful API/JSON/JPA/Spring Boot/Hibernate/Gradle
+
+This is the backend for a soon to be full-stack application to track upcoming movies. The backend was created using RestAPI/JSON/Spring data JPA/Spring Boot/Hibernate/Gradle.
+
 ## Return Type	Route	Functionality
 | Return Type   | Map Type | Path                        | Description                      |
 | ------------- | -------- | --------------------------- | -------------------------------- |
