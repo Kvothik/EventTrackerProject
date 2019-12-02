@@ -18,7 +18,7 @@ public class Movie {
 	private int id;
 	private String title;
 	private String length;
-	 @Enumerated(EnumType.STRING)
+	@Enumerated(EnumType.STRING)
 	private Rating rating;
 	private String type;
 	private String description;
