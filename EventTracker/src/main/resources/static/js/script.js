@@ -17,21 +17,14 @@ function init() {
 	lookup.addEventListener('click', function(e) {
 		e.preventDefault();
 		var keyword = document.lookupForm.keyword.value;
-		// if (!isNaN(keyword)) {
 		searchMovie(keyword);
 		console.log(keyword);
-		// } else {
-		// let error = document.createElement('p');
-		// error.textContent = 'No films found matching that title.';
-		// error.style.color = 'red';
-		// searchDiv.appendChild(error);
-		// }
 	});
 
 	var submitButton = document.getElementById('submit');
 	submitButton.addEventListener('click', function(e) {
 		e.preventDefault();
-		createFilm();
+		createMovie();
 	});
 }
 
@@ -91,6 +84,18 @@ function findInTheatres() {
 				miscUl.appendChild(trailerLi);
 				trailerLi.textContent = 'Trailer: ' + v.trailer;
 
+				var details = document.createElement("BUTTON");
+				details.textContent = 'View Film Details';
+				miscUl.appendChild(details);
+				
+				var update = document.createElement("BUTTON");
+				update.textContent = 'Update';
+				miscUl.appendChild(update);
+				
+				var deleteButton = document.createElement("BUTTON");
+				deleteButton.textContent = 'Delete';
+				miscUl.appendChild(deleteButton);
+				
 			});
 
 		}
@@ -159,6 +164,17 @@ function findComingSoon() {
 				miscUl.appendChild(trailerLi);
 				trailerLi.textContent = 'Trailer: ' + v.trailer;
 
+				var details = document.createElement("BUTTON");
+				details.textContent = 'View Film Details';
+				miscUl.appendChild(details);
+				
+				var update = document.createElement("BUTTON");
+				update.textContent = 'Update';
+				miscUl.appendChild(update);
+				
+				var deleteButton = document.createElement("BUTTON");
+				deleteButton.textContent = 'Delete';
+				miscUl.appendChild(deleteButton);
 			});
 
 		}
@@ -240,4 +256,86 @@ function searchMovie(keyword) {
 	};
 
 	xhr.send(null);
+}
+
+function createMovie() {
+
+	let thisButtonsForm = document.addFilm;
+	console.log(thisButtonsForm);
+	var xhr = new XMLHttpRequest();
+	// request body
+
+	xhr.open("POST", 'api/movie', true);
+	xhr.setRequestHeader("Content-type", "application/json"); // Specify JSON
+
+	xhr.onreadystatechange = function() {
+
+		if (xhr.readyState === 4 && xhr.status < 400) {
+			var movieObject = JSON.parse(xhr.responseText);
+
+		}
+
+		if (xhr.readyState === 4 && xhr.status >= 400) {
+			console.error(xhr.status + ': ' + xhr.responseText);
+		}
+
+	};
+	
+	
+	var movieObject = {
+		title : thisButtonsForm.title.value,
+		description : thisButtonsForm.description.value,
+		releaseDate : thisButtonsForm.releaseDate.value,
+		rating : thisButtonsForm.rating.value,
+		length : thisButtonsForm.length.value,
+		type : thisButtonsForm.type.value,
+		trailer : thisButtonsForm.trailer.value,
+		director : thisButtonsForm.director.value,
+		cast : thisButtonsForm.cast.value,
+		imgUrl : thisButtonsForm.imgUrl.value
+	};
+	var movieObjectJson = JSON.stringify(movieObject); // Convert JS object to
+	// JSON string
+	xhr.send(movieObjectJson);
+}
+
+function updateMovie(id) {
+	
+	let thisButtonsForm = document.addFilm;
+	console.log(thisButtonsForm);
+	var xhr = new XMLHttpRequest();
+	// request body
+	
+	xhr.open("PUT", 'api/movie' + id, true);
+	xhr.setRequestHeader("Content-type", "application/json"); // Specify JSON
+	
+	xhr.onreadystatechange = function() {
+		
+		if (xhr.readyState === 4 && xhr.status < 400) {
+			var movieObject = JSON.parse(xhr.responseText);
+			
+		}
+		
+		if (xhr.readyState === 4 && xhr.status >= 400) {
+			console.error(xhr.status + ': ' + xhr.responseText);
+		}
+		
+	};
+	
+	
+	var movieObject = {
+			title : thisButtonsForm.title.value,
+			description : thisButtonsForm.description.value,
+			releaseDate : thisButtonsForm.releaseDate.value,
+			rating : thisButtonsForm.rating.value,
+			length : thisButtonsForm.length.value,
+			type : thisButtonsForm.type.value,
+			trailer : thisButtonsForm.trailer.value,
+			director : thisButtonsForm.director.value,
+			cast : thisButtonsForm.cast.value,
+			imgUrl : thisButtonsForm.imgUrl.value
+	};
+	var movieObjectJson = JSON.stringify(movieObject); // Convert JS object to
+	// JSON string
+	xhr.send(movieObjectJson);
 }
