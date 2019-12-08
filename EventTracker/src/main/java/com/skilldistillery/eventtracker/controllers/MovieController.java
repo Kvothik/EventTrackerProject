@@ -39,12 +39,12 @@ public class MovieController {
 	public List<Movie> getByTitle(@PathVariable String keyword) {
 		return repo.findByTitleContainsIgnoreCase(keyword);
 	}
-	
+
 	@GetMapping("movie/search/comingSoon")
 	public List<Movie> getByComingSoon() {
 		return repo.queryByComingSoon();
 	}
-	
+
 	@GetMapping("movie/search/inTheatres")
 	public List<Movie> getByInTheatre() {
 		return repo.queryByInTheatres();
@@ -65,6 +65,17 @@ public class MovieController {
 		}
 	}
 
+	@GetMapping("movie/{id}")
+	public Movie getById(@PathVariable int id, HttpServletResponse resp) {
+		Optional<Movie> opt = repo.findById(id);
+		if (opt.isPresent()) {
+			Movie movie = opt.get();
+			return movie;
+		} else {
+			return null;
+		}
+	}
+
 	@DeleteMapping("movie/{id}")
 	public void deleteMovie(@PathVariable int id, HttpServletResponse resp) {
 		try {
@@ -79,7 +90,7 @@ public class MovieController {
 			e.printStackTrace();
 		}
 	}
- 
+
 	@PutMapping("movie/{id}")
 	public Movie updateMovie(@RequestBody Movie movie, @PathVariable int id, HttpServletResponse resp) {
 		Movie movieUpdate;

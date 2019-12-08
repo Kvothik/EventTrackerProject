@@ -86,15 +86,27 @@ function findInTheatres() {
 
 				var details = document.createElement("BUTTON");
 				details.textContent = 'View Film Details';
+				var movieId = v.id;
 				miscUl.appendChild(details);
+				details.addEventListener('click', function(e){
+					location.href = "details.html";
+				});
 				
 				var update = document.createElement("BUTTON");
 				update.textContent = 'Update';
+				var movieId = v.id;
 				miscUl.appendChild(update);
+				update.addEventListener('click', function(e){
+					location.href = "update.html";
+				});
 				
 				var deleteButton = document.createElement("BUTTON");
 				deleteButton.textContent = 'Delete';
+				var movieId = v.id;
 				miscUl.appendChild(deleteButton);
+				deleteButton.addEventListener('click', function(e){
+					location.href = "delete.html";
+				});
 				
 			});
 
