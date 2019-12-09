@@ -5,7 +5,7 @@ window.addEventListener('load', function(e) {
 
 function init() {
 	var movieId = sessionStorage.getItem("movieId");
-	var details = document.getElementById('movieDetails');
+	
 	movieDetails(movieId);
 
 //	var comingSoon = document.getElementById('comingSoon');
@@ -29,7 +29,7 @@ function init() {
 }
 
 function movieDetails(movieId) {
-
+	var details = document.getElementById('movieDetails');
 	var xhr = new XMLHttpRequest();
 	
 	xhr.open("GET", 'api/movie/' + movieId, true);
@@ -42,15 +42,15 @@ function movieDetails(movieId) {
 //			movieObject.forEach(function(v, i, a) {
 
 				let titleH1 = document.createElement('h1');
-				movieDetails.appendChild(titleH1);
+				details.appendChild(titleH1);
 				titleH1.textContent = movieObject.title;
 
 				let descriptionBq = document.createElement('blockquote');
-				movieDetails.appendChild(descriptionBq);
+				details.appendChild(descriptionBq);
 				descriptionBq.textContent = movieObject.description;
 
 				let miscUl = document.createElement('ul');
-				movieDetails.appendChild(miscUl);
+				details.appendChild(miscUl);
 
 				let ratingLi = document.createElement('li');
 				miscUl.appendChild(ratingLi);
@@ -84,27 +84,31 @@ function movieDetails(movieId) {
 				miscUl.appendChild(trailerLi);
 				trailerLi.textContent = 'Trailer: ' + movieObject.trailer;
 
-//				var details = document.createElement("BUTTON");
-//				details.textContent = 'View Film Details';
-//				miscUl.appendChild(details);
-//				details.addEventListener('click', function(e){
-//					location.href = "details.html";
-//				});
-//				
-//				var update = document.createElement("BUTTON");
-//				update.textContent = 'Update';
-//				miscUl.appendChild(update);
-//				update.addEventListener('click', function(e){
-//					location.href = "update.html";
-//				});
-//				
-//				var deleteButton = document.createElement("BUTTON");
-//				deleteButton.textContent = 'Delete';
-//				miscUl.appendChild(deleteButton);
-//				deleteButton.addEventListener('click', function(e){
-//					location.href = "delete.html";
-//				});
-//				
+				var home = document.createElement("BUTTON");
+				home.textContent = 'Back Home';
+				miscUl.appendChild(home);
+				home.addEventListener('click', function(e){
+					location.href = "index.html";
+				});
+				
+				var update = document.createElement("BUTTON");
+				update.textContent = 'Update';
+				var movieId = movieObject.id;
+				miscUl.appendChild(update);
+				update.addEventListener('click', function(e){
+					sessionStorage.setItem("movieId", movieId);
+					location.href = "update.html";
+				});
+				
+				var deleteButton = document.createElement("BUTTON");
+				deleteButton.textContent = 'Delete';
+				var movieId = movieObject.id;
+				miscUl.appendChild(deleteButton);
+				deleteButton.addEventListener('click', function(e){
+					sessionStorage.setItem("movieId", movieId);
+					location.href = "delete.html";
+				});
+				
 			}
 
 		}

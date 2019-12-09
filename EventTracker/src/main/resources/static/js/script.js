@@ -98,6 +98,7 @@ function findInTheatres() {
 				var movieId = v.id;
 				miscUl.appendChild(update);
 				update.addEventListener('click', function(e){
+					sessionStorage.setItem("movieId", movieId);
 					location.href = "update.html";
 				});
 				
@@ -106,6 +107,7 @@ function findInTheatres() {
 				var movieId = v.id;
 				miscUl.appendChild(deleteButton);
 				deleteButton.addEventListener('click', function(e){
+					sessionStorage.setItem("movieId", movieId);
 					location.href = "delete.html";
 				});
 				
@@ -180,14 +182,29 @@ function findComingSoon() {
 				var details = document.createElement("BUTTON");
 				details.textContent = 'View Film Details';
 				miscUl.appendChild(details);
+				var movieId = v.id;
+				details.addEventListener('click', function(e){
+					sessionStorage.setItem("movieId", movieId);
+					location.href = "details.html";
+				});
 				
 				var update = document.createElement("BUTTON");
 				update.textContent = 'Update';
+				var movieId = v.id;
 				miscUl.appendChild(update);
+				update.addEventListener('click', function(e){
+					sessionStorage.setItem("movieId", movieId);
+					location.href = "update.html";
+				});
 				
 				var deleteButton = document.createElement("BUTTON");
 				deleteButton.textContent = 'Delete';
+				var movieId = v.id;
 				miscUl.appendChild(deleteButton);
+				deleteButton.addEventListener('click', function(e){
+					sessionStorage.setItem("movieId", movieId);
+					location.href = "delete.html";
+				});
 			});
 
 		}
