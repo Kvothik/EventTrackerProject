@@ -86,9 +86,10 @@ function findInTheatres() {
 
 				var details = document.createElement("BUTTON");
 				details.textContent = 'View Film Details';
-				var movieId = v.id;
 				miscUl.appendChild(details);
+				var movieId = v.id;
 				details.addEventListener('click', function(e){
+					sessionStorage.setItem("movieId", movieId);
 					location.href = "details.html";
 				});
 				
