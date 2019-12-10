@@ -95,6 +95,7 @@ public class MovieController {
 	public Movie updateMovie(@RequestBody Movie movie, @PathVariable int id, HttpServletResponse resp) {
 		Movie movieUpdate;
 		try {
+			System.out.println(movie);
 			movieUpdate = svc.updateMovie(id, movie);
 			if (movie == null) {
 				resp.setStatus(404);
