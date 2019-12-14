@@ -15,6 +15,8 @@ export class IndexComponent implements OnInit {
   comingSoon: Movie[] = [];
   selected = null;
   editMovie: Movie = null;
+  createMovie: Movie = new Movie();
+  isCreating = false;
 
   // M e t h o d s
 
@@ -58,13 +60,40 @@ export class IndexComponent implements OnInit {
       data => {
         this.editMovie = null;
         this.selected = data;
-        this.loadInTheatres();
-        this.loadComingSoon();
+        this.ngOnInit();
       },
       err => {
         console.error('MovieComponent.update(): error updating movie.');
         console.error(err);
       });
+  }
+
+  setCreateMovie() {
+    this.isCreating = true;
+  }
+
+  addMovie(movie: Movie) {
+    this.svc.create(movie).subscribe(
+      data => {
+        this.createMovie = null;
+        this.ngOnInit();
+      },
+      err => {
+        console.error('MovieComponent.create(): error creating movie.');
+        console.error(err);
+      });
+  }
+
+  deleteMovie(id: number) {
+    this.svc.delete(id).subscribe(
+      good => {
+        this.ngOnInit();
+      },
+      bad => {
+        console.error('MovieComponent.delete(): error deleting todos');
+        console.error(bad);
+      }
+    );
   }
 
   // C o n s t r u c t o r
