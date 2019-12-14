@@ -1,0 +1,35 @@
+html, body{
+  background-image: url("http://bgfons.com/uploads/ornaments/ornaments_texture1119.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#movieCover{
+  padding: 15px;
+}
+
+h1{
+  /* color: beige; */
+  text-align: center;
+	color: #007b5e;
+	text-transform: uppercase;
+	font-family: fantasy;
+	z-index:1;
+}
+
+h3{
+  color: beige;
+}
+
+span{
+  color: aqua;
+}
+
+h4{
+  color: beige;
+}
+
+label{
+  color: beige;
+}
+

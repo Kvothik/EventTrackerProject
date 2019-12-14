@@ -13,8 +13,7 @@ export class Movie {
   imgUrl: string;
 
   // tslint:disable-next-line: max-line-length
-  constructor(id?: number, title?: string, length?: string, rating?: string, type?: string, description?: string, trailer?: string, director?: string, cast?: string, releaseDate?: string, imgUrl?: string) {
-    this.id = id;
+  constructor(title?: string, length?: string, rating?: string, type?: string, description?: string, trailer?: string, director?: string, cast?: string, releaseDate?: string, imgUrl?: string) {
     this.title = title;
     this.length = length;
     this.rating = rating;

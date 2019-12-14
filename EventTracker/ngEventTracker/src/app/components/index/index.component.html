@@ -1,1 +1,53 @@
-<p>index works!</p>
+<html>
+
+<body>
+  <div *ngIf="!selected">
+    <h1 style="text-align: center;">In Theatres</h1>
+    <ng-container *ngFor="let movie of inTheatres">
+      <img id="movieCover" (click)="displayMovie(movie)" [src]="movie.imgUrl" width="300" height="395" />
+    </ng-container>
+
+    <h1 style="text-align: center;">Coming Soon</h1>
+    <ng-container *ngFor="let movie of comingSoon">
+      <img id="movieCover" (click)="displayMovie(movie)" [src]="movie.imgUrl" width="300" height="395" />
+    </ng-container>
+  </div>
+
+  <div *ngIf="selected && !editMovie">
+    <h1 style="text-align: center;">{{selected.title}}</h1>
+    <h3 style="text-align: center;"> | R a t i n g : <span>{{selected.rating}} </span> | T y p e :
+      <span>{{selected.type}} </span> | L e n g t h : <span>{{selected.length}}</span> | R e l e a s e :
+      <span>{{selected.releaseDate}}</span> |</h3>
+    <ng-container>
+      <img id="movieCover" class="col" [src]="selected.imgUrl" width="300" height="395" />
+      <video class="col" src="{{selected.trailer}}" width="800" height="400" frameborder="0" type="WebM" allowfullscreen
+        controls></video>
+    </ng-container>
+    <h4 style="text-align: center;" class="col"><span>D e s c r i p t i o n </span><br>{{selected.description}}</h4>
+    <h4 style="text-align: center;" class="col"><span>D i r e c t o r </span><br>{{selected.director}}</h4>
+    <h4 style="text-align: center;" class="col"><span>C a s t </span><br>{{selected.cast}}</h4>
+    <button (click)="displayAll()">Back</button>
+    <button (click)="setEditMovie()">Edit</button>
+  </div>
+
+  <div *ngIf="editMovie">
+    <form>
+      <h1>Update Movie</h1>
+      <label>
+        <input class="form-control" type="text" name="task" [(ngModel)]="editMovie.title">T i t l e</label>
+      <label>
+        <select class="form-control" name="rating" [(ngModel)]="editMovie.rating">
+          <option value="G">G</option>
+          <option value="PG">PG</option>
+          <option value="PG13">PG13</option>
+          <option value="R">R</option>
+        </select>R a t i n g</label>
+        <label>
+          <input class="form-control" type="number" name="length" for="length" [(ngModel)]="editMovie.length">L e n g t h</label><br>
+        <button (click)="updateMovie(editMovie)">U p d a t e</button>
+        <button (click)="editMovie = null && displayAll()">C a n c e l</button>
+    </form>
+  </div>
+</body>
+
+</html>
